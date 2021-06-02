@@ -1,19 +1,13 @@
-// const getRandomNumber = (minNumber, maxNumber) => Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
-
 const checkMaxLength = (line, maxLength) => line.length <= maxLength;
 
-checkMaxLength();
+checkMaxLength(1, 1);
 
 const getRandomNumber = (minNumber, maxNumber) => {
-  if (minNumber < 0 || maxNumber < 0) {
-    throw new Error('Диапазон может быть только положительный, включая ноль');
+  if (maxNumber < minNumber) {
+    throw new Error('Максимальное значение диапазона не может быть меньше минимального');}
+  if (minNumber >= 0 & maxNumber >= 0) {
+    return Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
   }
-  if (maxNumber <= minNumber) {
-    const rand = minNumber + maxNumber;
-    return rand;
-  }
-  else {
-    const rand = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
-    return Math.floor(rand);}
+  throw new Error('Диапазон может быть только положительный, включая ноль');
 };
 getRandomNumber(0, 10);
