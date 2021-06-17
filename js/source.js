@@ -1,5 +1,4 @@
-import {getRandomNumber} from './util.js';
-
+import { getRandomNumber } from './util.js';
 
 const AVATAR_NUMBERS = [1, 2, 3, 4, 5, 6];
 
@@ -10,8 +9,8 @@ const getAvatarSrc = () => {
 };
 
 const getPhotoSrc = () => {
-  const photosSrc = `photos/${getRandomNumber(1, 25)}.svg`;
+  const photosSrc = `photos/${getRandomNumber(1, 25)}.jpg`;
   return photosSrc;
 };
 
-export {getAvatarSrc, getPhotoSrc};
+export { getAvatarSrc, getPhotoSrc };
