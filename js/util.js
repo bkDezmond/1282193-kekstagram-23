@@ -17,4 +17,6 @@ const getRandomItem = (array) => {
   return array[randomIndex];
 };
 
-export {getRandomItem, getRandomNumber};
+const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
+
+export { getRandomItem, getRandomNumber, isEscEvent, checkMaxLength };
