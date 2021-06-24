@@ -1,5 +1,4 @@
 import { isEscEvent } from './util.js';
-import { hashtagInput, commentInput } from './validation.js';
 
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const body = document.body;
@@ -18,16 +17,16 @@ const modalOpenHandler = () => {
   body.classList.add('modal-open');
 };
 
-commentInput.addEventListener('keydown', (evt) => {
+const removeCommentInputHandler = (evt) => {
   if (isEscEvent(evt)) {
     evt.stopPropagation();
   }
-});
+};
 
-hashtagInput.addEventListener('keydown', (evt) => {
+const removeHashtagInputHandler = (evt) => {
   if (isEscEvent(evt)) {
     evt.stopPropagation();
   }
-});
+};
 
-export { modalCloseHandler, modalOpenHandler, uploadInput, uploadCancel };
+export { modalCloseHandler, modalOpenHandler, removeCommentInputHandler, removeHashtagInputHandler, uploadInput, uploadCancel };
