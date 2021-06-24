@@ -11,10 +11,13 @@ const addInputHandler = () => {
     const tags = evt.target.value.split(' ');
     const isValid = tags.every((tag) => HASHTAG_NAME_REG_EXP.test(tag));
     if (tags.length > MAX_HASHTAGS) {
-      evt.target.setCustomValidity('нельзя указать больше пяти хэш-тегов');
+      evt.target.setCustomValidity('Нельзя указать больше пяти хэш-тегов');
     }
     else if (!isValid) {
-      evt.target.setCustomValidity('строка после решётки должна состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т.д.');
+      evt.target.setCustomValidity('Строка после решётки должна состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т.д.');
+    }
+    else if (tags.some((value, index, arr) => arr.indexOf(value) !== index)) {
+      evt.target.setCustomValidity('Хэштеги не должны повторяться');
     }
     else {
       evt.target.setCustomValidity('');
@@ -28,7 +31,7 @@ const addCommentInputHandler = () => {
     const comments = evt.target.value;
     const commentLength = checkMaxLength(comments, MAX_COMMENT_LENGTH);
     if (!commentLength) {
-      evt.target.setCustomValidity('длина комментария не может составлять больше 140 символов');
+      evt.target.setCustomValidity('Длина комментария не может составлять больше 140 символов');
     }
     else {
       evt.target.setCustomValidity('');
