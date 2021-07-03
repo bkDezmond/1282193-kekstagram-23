@@ -20,7 +20,6 @@ const effectsLevel = {
     DEFAULT: 1,
     FILTER: 'grayscale',
     UNIT: '',
-    NAME: 'effects__preview--sepia',
   },
   sepia: {
     MIN: 0,
@@ -66,41 +65,48 @@ noUiSlider.create(effectLevelSlider, {
   connect: 'lower',
 });
 
+const wasd = ['effects__preview--none', 'effects__preview--chrome', 'effects__preview--sepia', 'effects__preview--marvin', 'effects__preview--phobos', 'effects__preview--heat'];
+
+
 const removeAllClasses = (element, except = []) => {
   const classList = element.classList;
   for (let i = 0; i < classList.length; i++) {
-    if (!except.includes(classList[i])) {
+    if (except.includes(classList[i])) {
       classList.remove(classList[i]);
     }
   }
 };
 
-const sliderNotHidden = () => {
+const showSlider = () => {
   effectsSlider.classList.remove('visually-hidden');
 };
 
-const setEffects = () => {
+const addSetEffectHandler = () => {
   uploadForm.addEventListener('click', () => {
     const effectsRadio = document.querySelector('input[name=effect]:checked').id;
-    removeAllClasses(photoPreview, ['img-upload__preview']);
+    removeAllClasses(photoPreview, wasd);
     if (effectsRadio === 'effect-none') {
       photoPreview.classList.add('effects__preview--none');
       effectsSlider.classList.add('visually-hidden');
     }
     if (effectsRadio === 'effect-chrome') {
-      sliderNotHidden();
+      showSlider();
       photoPreview.classList.add('effects__preview--chrome');
     }
     if (effectsRadio === 'effect-sepia') {
+      showSlider();
       photoPreview.classList.add('effects__preview--sepia');
     }
     if (effectsRadio === 'effect-marvin') {
+      showSlider();
       photoPreview.classList.add('effects__preview--marvin');
     }
     if (effectsRadio === 'effect-phobos') {
+      showSlider();
       photoPreview.classList.add('effects__preview--phobos');
     }
     if (effectsRadio === 'effect-heat') {
+      showSlider();
       photoPreview.classList.add('effects__preview--heat');
     }
   });
@@ -110,11 +116,11 @@ effectLevelSlider.noUiSlider.on('update', (_, handle, unencoded) => {
   effectsInput.value = unencoded[handle];
   const effectValue = unencoded[handle];
   const checkedEffect = document.querySelector('input[name=effect]:checked').value;
-  setEffects();
+  addSetEffectHandler();
   if (checkedEffect === 'none') {
     return;
   }
-  photoPreview.style.filter = `${effectsLevel[checkedEffect].FILTER}(${effectValue + effectsLevel[checkedEffect].UNIT || ''})`;
+  photoPreview.style.filter = `${effectsLevel[checkedEffect].FILTER}(${effectValue + effectsLevel[checkedEffect].UNIT})`;
 });
 
 effectNone.addEventListener('change', (evt) => {

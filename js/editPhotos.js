@@ -12,27 +12,22 @@ const scaleValues = {
 
 scaleControlValue.value = `${scaleValues.DEFAULT}%`;
 
-const setScale = function (value) {
-  scaleControlValue.value = `${value}%`;
-  photoPreview.style.transform = `scale(${value / 100})`;
-};
 
-const scaleBtnClickHandler = function (point) {
-  let currentScale = parseInt(scaleControlValue.value, 10);
-
-  currentScale = currentScale + (scaleValues.STEP * point);
+const scaleClickHandler = function (sign) {
+  const currentScale = parseInt(scaleControlValue.value, 10) + (scaleValues.STEP * sign);
 
   if (currentScale >= scaleValues.MIN && currentScale <= scaleValues.MAX) {
-    setScale(currentScale);
+    scaleControlValue.value = `${currentScale}%`;
+    photoPreview.style.transform = `scale(${currentScale / 100})`;
   }
 };
 
 scaleControlBigger.addEventListener('click', () => {
-  scaleBtnClickHandler(1);
+  scaleClickHandler(1);
 });
 
 scaleControlSmaller.addEventListener('click', () => {
-  scaleBtnClickHandler(-1);
+  scaleClickHandler(-1);
 });
 
 export { photoPreview };
