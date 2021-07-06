@@ -2,6 +2,8 @@ import { modalCloseHandler, modalOpenHandler, uploadInput, uploadCancel, removeC
 import { addInputHandler, addCommentInputHandler, hashtagInput, commentInput } from './validation.js';
 import { renderPhotos } from './renderPhotos.js';
 import { isEscEvent } from './util.js';
+import './editPhotos.js';
+import './photosEffects.js';
 
 renderPhotos();
 

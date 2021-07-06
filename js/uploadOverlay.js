@@ -11,7 +11,6 @@ const modalCloseHandler = () => {
   body.classList.remove('modal-open');
   uploadForm.reset();
 };
-
 const modalOpenHandler = () => {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
@@ -29,4 +28,4 @@ const removeHashtagInputHandler = (evt) => {
   }
 };
 
-export { modalCloseHandler, modalOpenHandler, removeCommentInputHandler, removeHashtagInputHandler, uploadInput, uploadCancel };
+export { modalCloseHandler, modalOpenHandler, removeCommentInputHandler, removeHashtagInputHandler, uploadInput, uploadCancel, uploadForm };
