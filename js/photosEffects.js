@@ -1,6 +1,5 @@
 import '../nouislider/nouislider.js';
 import { photoPreview } from './editPhotos.js';
-import { uploadForm } from './uploadOverlay.js';
 
 const effectsInput = document.querySelector('.effect-level__value');
 const effectLevelSlider = document.querySelector('.effect-level__slider');
@@ -11,6 +10,7 @@ const effectSepia = document.getElementById('effect-sepia');
 const effectMarvin = document.getElementById('effect-marvin');
 const effectPhobos = document.getElementById('effect-phobos');
 const effectHeat = document.getElementById('effect-heat');
+const uploadForm = document.querySelector('.img-upload__form');
 
 const effectsLevel = {
   chrome: {
@@ -65,7 +65,7 @@ noUiSlider.create(effectLevelSlider, {
   connect: 'lower',
 });
 
-const wasd = ['effects__preview--none', 'effects__preview--chrome', 'effects__preview--sepia', 'effects__preview--marvin', 'effects__preview--phobos', 'effects__preview--heat'];
+const FILTER_CLASS_NAMES = ['effects__preview--none', 'effects__preview--chrome', 'effects__preview--sepia', 'effects__preview--marvin', 'effects__preview--phobos', 'effects__preview--heat'];
 
 
 const removeAllClasses = (element, except = []) => {
@@ -84,7 +84,7 @@ const showSlider = () => {
 const addSetEffectHandler = () => {
   uploadForm.addEventListener('click', () => {
     const effectsRadio = document.querySelector('input[name=effect]:checked').id;
-    removeAllClasses(photoPreview, wasd);
+    removeAllClasses(photoPreview, FILTER_CLASS_NAMES);
     if (effectsRadio === 'effect-none') {
       photoPreview.classList.add('effects__preview--none');
       effectsSlider.classList.add('visually-hidden');
@@ -193,3 +193,5 @@ effectHeat.addEventListener('change', (evt) => {
     });
   }
 });
+
+export { FILTER_CLASS_NAMES, removeAllClasses, effectsSlider };

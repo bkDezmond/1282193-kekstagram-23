@@ -1,10 +1,7 @@
-import { photosArray } from './data.js';
+const picturesElements = document.querySelector('.pictures');
+const similarPictureTemplate = document.querySelector('#picture').content;
 
-const renderPhotos = () => {
-  const picturesElements = document.querySelector('.pictures');
-  const similarPictureTemplate = document.querySelector('#picture').content;
-
-  const generatePhotoElement = photosArray;
+const renderPhotoElement = (generatePhotoElement) => {
   const fragment = document.createDocumentFragment();
 
   generatePhotoElement.forEach(({ comments, likes, url }) => {
@@ -18,4 +15,4 @@ const renderPhotos = () => {
   picturesElements.appendChild(fragment);
 };
 
-export { renderPhotos };
+export { renderPhotoElement };

@@ -1,5 +1,5 @@
-import {getRandomItem, getRandomNumber} from './util.js';
-import {getAvatarSrc} from './source.js';
+import { getRandomItem, getRandomNumber } from './util.js';
+import { getAvatarSrc } from './source.js';
 
 const UNIQUE_IDS_COUNT = 100;
 const NAMES = ['Игорь', 'Елена', 'Олег', 'Мария', 'Евгений', 'Виктория'];
@@ -19,4 +19,6 @@ const getRandomComments = () => {
   return uniqueIds.map((id) => getRandomComment(id));
 };
 
-export {getRandomComments, getRandomComment};
+export { getRandomComments, getRandomComment };
+
+// через slice

@@ -30,4 +30,4 @@ scaleControlSmaller.addEventListener('click', () => {
   scaleClickHandler(-1);
 });
 
-export { photoPreview };
+export { photoPreview, scaleClickHandler };

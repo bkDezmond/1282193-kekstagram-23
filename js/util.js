@@ -19,4 +19,25 @@ const getRandomItem = (array) => {
 
 const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
 
-export { getRandomItem, getRandomNumber, isEscEvent, checkMaxLength };
+
+const errorTemplate = document.querySelector('#error').content;
+
+const renderErrorTemplate = () => {
+  const errorFragment = document.createDocumentFragment('div');
+  const errorFragmentTemplate = errorTemplate.cloneNode(true);
+  errorFragment.append(errorFragmentTemplate);
+
+  document.body.append(errorFragment);
+};
+
+const successTemplate = document.querySelector('#success').content;
+
+const renderSuccessTemplate = () => {
+  const successFragment = document.createDocumentFragment('div');
+  const successFragmentTemplate = successTemplate.cloneNode(true);
+  successFragment.append(successFragmentTemplate);
+
+  document.body.append(successFragment);
+};
+
+export { renderErrorTemplate, renderSuccessTemplate, getRandomItem, getRandomNumber, isEscEvent, checkMaxLength };
