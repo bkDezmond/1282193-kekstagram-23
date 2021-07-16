@@ -10,6 +10,19 @@ const renderErrorTemplate = () => {
   const errorFragmentTemplate = errorTemplate.cloneNode(true);
   errorFragment.append(errorFragmentTemplate);
 
+  const closeError = errorFragment.querySelector('.error__button');
+  const errorHandler = () => {
+    const success = document.querySelector('.success');
+    success.remove();
+  };
+
+  document.addEventListener('click', (evt) => {
+    if (evt.target.className === 'success') {
+      errorHandler();
+    }
+  });
+
+  closeError.addEventListener('click', errorHandler);
   document.body.append(errorFragment);
 };
 
@@ -18,12 +31,19 @@ const renderSuccessTemplate = () => {
   const successFragmentTemplate = successTemplate.cloneNode(true);
   successFragment.append(successFragmentTemplate);
 
-  const closeButton = successFragment.querySelector('.success__button');
+  const closeSuccess = successFragment.querySelector('.success__button');
   const successHandler = () => {
     const success = document.querySelector('.success');
     success.remove();
   };
-  closeButton.addEventListener('click', successHandler);
+
+  document.addEventListener('click', (evt) => {
+    if (evt.target.className === 'success') {
+      successHandler();
+    }
+  });
+
+  closeSuccess.addEventListener('click', successHandler);
   document.body.append(successFragment);
 
 };
