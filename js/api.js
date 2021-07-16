@@ -1,11 +1,14 @@
-import { renderErrorTemplate, renderSuccessTemplate } from './util.js';
-
-const getData = (onSuccess) => {
+// okay
+const getData = (onSuccess, onFail) => {
   fetch('https://23.javascript.pages.academy/kekstagram/data')
-    .then((response) => response.json())
-    .then((photosArray) => {
-      onSuccess(photosArray);
-    });
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Не удалось загрузить данные');
+      }
+      return response.json();
+    })
+    .then(onSuccess)
+    .catch(onFail);
 };
 
 const sendData = (onSuccess, onFail, body) => {
@@ -14,17 +17,15 @@ const sendData = (onSuccess, onFail, body) => {
       method: 'POST',
       body,
     },
-  ).then((response) => {
-    if (response.ok) {
-      onSuccess();
-      renderSuccessTemplate();
-    } else {
-      renderErrorTemplate();
-    }
-  })
-    .catch(() => {
-      renderErrorTemplate();
-    });
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Не удалось загрузить данные');
+      } else {
+        onSuccess();
+      }
+    })
+    .catch(onFail);
 };
 
 export { getData, sendData };
