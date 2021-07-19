@@ -1,12 +1,11 @@
+// okay
 import { checkMaxLength } from './util.js';
 
 const MAX_HASHTAGS = 5;
 const MAX_COMMENT_LENGTH = 140;
 const HASHTAG_NAME_REG_EXP = /^#[A-Za-zА-Я-а-яЁё0-9]{1,19}$/;
-const hashtagInput = document.querySelector('.text__hashtags');
-const commentInput = document.querySelector('.text__description');
 
-const addInputHandler = (evt) => {
+const hashTagInputHandler = (evt) => {
   const tags = evt.target.value.split(' ');
   const isValid = tags.every((tag) => HASHTAG_NAME_REG_EXP.test(tag));
   if (tags.length > MAX_HASHTAGS) {
@@ -24,7 +23,7 @@ const addInputHandler = (evt) => {
   evt.target.reportValidity();
 };
 
-const addCommentInputHandler = (evt) => {
+const commentInputHandler = (evt) => {
   const comment = evt.target.value;
   const isValidLength = checkMaxLength(comment, MAX_COMMENT_LENGTH);
   if (!isValidLength) {
@@ -36,4 +35,4 @@ const addCommentInputHandler = (evt) => {
   evt.target.reportValidity();
 };
 
-export { addInputHandler, addCommentInputHandler, hashtagInput, commentInput };
+export { hashTagInputHandler, commentInputHandler };

@@ -1,22 +1,51 @@
+const errorTemplate = document.querySelector('#error').content;
+const successTemplate = document.querySelector('#success').content;
+
 const checkMaxLength = (line, maxLength) => line.length <= maxLength;
-
-checkMaxLength(1, 1);
-
-const getRandomNumber = (minNumber, maxNumber) => {
-  if (maxNumber < minNumber) {
-    throw new Error('Максимальное значение диапазона не может быть меньше минимального');
-  }
-  if (minNumber >= 0 && maxNumber >= 0) {
-    return Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
-  }
-  throw new Error('Диапазон может быть только положительный, включая ноль');
-};
-
-const getRandomItem = (array) => {
-  const randomIndex = getRandomNumber(0, array.length);
-  return array[randomIndex];
-};
 
 const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
 
-export { getRandomItem, getRandomNumber, isEscEvent, checkMaxLength };
+const renderErrorTemplate = () => {
+  const errorFragment = document.createDocumentFragment();
+  const errorFragmentTemplate = errorTemplate.cloneNode(true);
+  errorFragment.append(errorFragmentTemplate);
+
+  const closeError = errorFragment.querySelector('.error__button');
+  const errorHandler = () => {
+    const success = document.querySelector('.success');
+    success.remove();
+  };
+
+  document.addEventListener('click', (evt) => {
+    if (evt.target.className === 'success') {
+      errorHandler();
+    }
+  });
+
+  closeError.addEventListener('click', errorHandler);
+  document.body.append(errorFragment);
+};
+
+const renderSuccessTemplate = () => {
+  const successFragment = document.createDocumentFragment();
+  const successFragmentTemplate = successTemplate.cloneNode(true);
+  successFragment.append(successFragmentTemplate);
+
+  const closeSuccess = successFragment.querySelector('.success__button');
+  const successHandler = () => {
+    const success = document.querySelector('.success');
+    success.remove();
+  };
+
+  document.addEventListener('click', (evt) => {
+    if (evt.target.className === 'success') {
+      successHandler();
+    }
+  });
+
+  closeSuccess.addEventListener('click', successHandler);
+  document.body.append(successFragment);
+
+};
+
+export { renderErrorTemplate, renderSuccessTemplate, isEscEvent, checkMaxLength };

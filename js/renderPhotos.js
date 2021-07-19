@@ -1,18 +1,19 @@
-import { photosArray } from './data.js';
+// okay
+import { showFullscreen } from './photoFullscreen.js';
+const picturesElements = document.querySelector('.pictures');
+const similarPictureTemplate = document.querySelector('#picture').content;
 
-const renderPhotos = () => {
-  const picturesElements = document.querySelector('.pictures');
-  const similarPictureTemplate = document.querySelector('#picture').content;
-
-  const generatePhotoElement = photosArray;
+const renderPhotos = (photos) => {
   const fragment = document.createDocumentFragment();
 
-  generatePhotoElement.forEach(({ comments, likes, url }) => {
+  photos.forEach(({ comments, likes, url }) => {
     const pictureTemplate = similarPictureTemplate.cloneNode(true);
     pictureTemplate.querySelector('.picture__comments').textContent = comments.length;
     pictureTemplate.querySelector('.picture__likes').textContent = likes;
     pictureTemplate.querySelector('.picture__img').src = url;
-    fragment.appendChild(pictureTemplate);
+    pictureTemplate.querySelector('.picture__img').addEventListener('click', () => {
+      showFullscreen(comments, likes, url);
+    }); fragment.appendChild(pictureTemplate);
   });
 
   picturesElements.appendChild(fragment);
