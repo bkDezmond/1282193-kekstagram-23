@@ -12,12 +12,12 @@ const renderErrorTemplate = () => {
 
   const closeError = errorFragment.querySelector('.error__button');
   const errorHandler = () => {
-    const success = document.querySelector('.success');
+    const success = document.querySelector('.error');
     success.remove();
   };
 
   document.addEventListener('click', (evt) => {
-    if (evt.target.className === 'success') {
+    if (evt.target.className === 'error') {
       errorHandler();
     }
   });
