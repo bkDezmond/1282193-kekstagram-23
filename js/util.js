@@ -5,9 +5,14 @@ const checkMaxLength = (line, maxLength) => line.length <= maxLength;
 
 const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
 
-const renderErrorTemplate = () => {
+const renderErrorTemplate = (error) => {
   const errorFragment = document.createDocumentFragment();
   const errorFragmentTemplate = errorTemplate.cloneNode(true);
+  if (error) {
+    errorFragmentTemplate.querySelector('.error__title').textContent = 'Не удалось загрузить данные';
+    errorFragmentTemplate.querySelector('.error__button').textContent = 'Ок';
+  }
+
   errorFragment.append(errorFragmentTemplate);
 
   const closeError = errorFragment.querySelector('.error__button');
