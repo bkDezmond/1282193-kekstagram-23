@@ -8,8 +8,8 @@ const closeFullscreenButton = document.querySelector('.big-picture__cancel');
 const commentsContainer = document.querySelector('.social__comments');
 const body = document.body;
 const COMMMENTS_STEP = 5;
+
 const showFullscreen = (comments, likes, url, description) => {
-  commentsContainer.innerHTML = '';
   body.classList.add('modal-open');
   fullscreenPicture.classList.remove('hidden');
   commentCount.classList.remove('hidden');
@@ -18,25 +18,33 @@ const showFullscreen = (comments, likes, url, description) => {
   fullscreenPicture.querySelector('.likes-count').textContent = likes;
   fullscreenPicture.querySelector('.big-picture__img img').src = url;
   fullscreenPicture.querySelector('.social__caption').textContent = description;
-  fullscreenPicture.querySelector('.social__comments').content = renderComments(comments.slice(0, COMMMENTS_STEP));
-  commentsLoader.addEventListener('click', () => {
+  renderComments(comments.slice(0, COMMMENTS_STEP), comments.length);
+  const showComments = () => {
     const commentsCount = commentsContainer.children.length;
-    renderComments(comments.slice(commentsCount, commentsCount + COMMMENTS_STEP));
-  });
+    renderComments(comments.slice(0, commentsCount + COMMMENTS_STEP), comments.length);
+    const newCommentsCout = commentsContainer.children.length;
+    if (comments.length === newCommentsCout) {
+      commentsLoader.classList.add('hidden');
+    }
+  };
+
+  commentsLoader.addEventListener('click', showComments);
+  const closeFullscreen = () => {
+    fullscreenPicture.classList.add('hidden');
+    commentCount.classList.add('hidden');
+    commentsLoader.classList.add('hidden');
+    body.classList.remove('modal-open');
+    commentsLoader.removeEventListener('click', showComments);
+  };
+
+  closeFullscreenButton.addEventListener('click', closeFullscreen, { once: true });
+
+  document.addEventListener('keydown', (evt) => {
+    if (isEscEvent(evt)) {
+      evt.preventDefault();
+      closeFullscreen();
+    }
+  }, { once: true });
 };
-
-const closeFullscreen = () => {
-  fullscreenPicture.classList.add('hidden');
-  body.classList.remove('modal-open');
-};
-
-closeFullscreenButton.addEventListener('click', closeFullscreen);
-
-document.addEventListener('keydown', (evt) => {
-  if (isEscEvent(evt)) {
-    evt.preventDefault();
-    closeFullscreen();
-  }
-});
 
 export { showFullscreen };

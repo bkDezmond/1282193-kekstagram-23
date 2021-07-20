@@ -2,7 +2,7 @@
 const scaleControlSmaller = document.querySelector('.scale__control--smaller');
 const scaleControlBigger = document.querySelector('.scale__control--bigger');
 const scaleControlValue = document.querySelector('.scale__control--value');
-const photoPreview = document.querySelector('.img-upload__preview');
+const photoPreview = document.querySelector('.img-upload__preview img');
 
 const scaleValues = {
   min: 25,

@@ -6,7 +6,7 @@ const effectLevelSlider = document.querySelector('.effect-level__slider');
 const effectsSlider = document.querySelector('.img-upload__effect-level');
 const imgUploadEffects = document.querySelector('.img-upload__effects');
 const FILTER_CLASS_NAMES = ['effects__preview--none', 'effects__preview--chrome', 'effects__preview--sepia', 'effects__preview--marvin', 'effects__preview--phobos', 'effects__preview--heat'];
-const photoPreview = document.querySelector('.img-upload__preview');
+const photoPreview = document.querySelector('.img-upload__preview img');
 
 const effectsDescription = {
   none: {
