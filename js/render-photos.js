@@ -1,5 +1,5 @@
 // okay
-import { showFullscreen } from './photoFullscreen.js';
+import { showFullscreen } from './photo-fullscreen.js';
 
 const picturesElements = document.querySelector('.pictures');
 const similarPictureTemplate = document.querySelector('#picture').content;

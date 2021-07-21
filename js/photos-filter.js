@@ -1,11 +1,12 @@
-import { renderPhotos } from './renderPhotos.js';
+import { renderPhotos } from './render-photos.js';
 import { getData } from './api.js';
 import { renderErrorTemplate } from './util.js';
 import { debounce } from './utils/debounce.js';
 
 const NUMBER_OF_UNIQUE_PHOTOS = 10;
-const filterButtonsForm = document.querySelector('.img-filters__form');
 const DEBOUNCE_TIME = 500;
+const filterButtonsForm = document.querySelector('.img-filters__form');
+
 
 const filterHandler = (evt) => {
   const currentButtons = document.querySelectorAll('.img-filters__button');

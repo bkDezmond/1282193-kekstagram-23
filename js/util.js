@@ -17,8 +17,8 @@ const renderErrorTemplate = (error) => {
 
   const closeError = errorFragment.querySelector('.error__button');
   const errorHandler = () => {
-    const success = document.querySelector('.error');
-    success.remove();
+    const errorModal = document.querySelector('.error');
+    errorModal.remove();
   };
 
   document.addEventListener('click', (evt) => {
@@ -38,8 +38,8 @@ const renderSuccessTemplate = () => {
 
   const closeSuccess = successFragment.querySelector('.success__button');
   const successHandler = () => {
-    const success = document.querySelector('.success');
-    success.remove();
+    const successModal = document.querySelector('.success');
+    successModal.remove();
   };
 
   document.addEventListener('click', (evt) => {

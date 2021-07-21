@@ -1,8 +1,8 @@
 // okay
 import { isEscEvent, renderErrorTemplate, renderSuccessTemplate } from './util.js';
 import { sendData } from './api.js';
-import { clearEffects } from './photoEffects.js';
-import { clearScale } from './photoScale.js';
+import { clearEffects } from './photo-effects.js';
+import { clearScale } from './photo-scale.js';
 import { hashTagInputHandler, commentInputHandler } from './validation.js';
 
 const uploadOverlay = document.querySelector('.img-upload__overlay');
@@ -57,14 +57,16 @@ uploadForm.addEventListener('submit', (evt) => {
       closeUploadOverlay();
       renderSuccessTemplate();
     },
-    () => renderErrorTemplate(),
+    () =>
+      renderErrorTemplate(),
     new FormData(evt.target),
+    closeUploadOverlay(),
   );
 });
 
 uploadCancel.addEventListener('click', modalCloseHandler);
 
-uploadInput.addEventListener('click', modalOpenHandler);
+uploadInput.addEventListener('change', modalOpenHandler);
 
 commentInput.addEventListener('input', commentInputHandler);
 

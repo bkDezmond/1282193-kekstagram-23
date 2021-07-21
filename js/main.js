@@ -1,9 +1,9 @@
 import { renderErrorTemplate } from './util.js';
-import { renderPhotos } from './renderPhotos.js';
+import { renderPhotos } from './render-photos.js';
 import { getData } from './api.js';
-import './photoUpload.js';
-import './photoScale.js';
-import './photoEffects.js';
-import './photosFilter.js';
+import './photo-upload.js';
+import './photo-scale.js';
+import './photo-effects.js';
+import './photos-filter.js';
 
 getData(renderPhotos, renderErrorTemplate);
