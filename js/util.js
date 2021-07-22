@@ -19,15 +19,15 @@ const renderErrorTemplate = (error) => {
 
   document.body.append(errorFragment);
 
-  const removeErrorModal = (evt) => {
+  const removeErrorModalHandler = (evt) => {
     if (evt.target.className === 'error') {
-      document.removeEventListener('click', removeErrorModal);
+      document.removeEventListener('click', removeErrorModalHandler);
       const errorModal = document.querySelector('.error');
       errorModal.remove();
     }
   };
 
-  document.addEventListener('click', removeErrorModal);
+  document.addEventListener('click', removeErrorModalHandler);
 
   closeError.addEventListener('click', () => {
     const errorModal = document.querySelector('.error');
@@ -44,15 +44,15 @@ const renderSuccessTemplate = () => {
 
   document.body.append(successFragment);
 
-  const removeSuccessModal = (evt) => {
+  const removeSuccessModalHandler = (evt) => {
     if (evt.target.className === 'success') {
-      document.removeEventListener('click', removeSuccessModal);
+      document.removeEventListener('click', removeSuccessModalHandler);
       const successModal = document.querySelector('.success');
       successModal.remove();
     }
   };
 
-  document.addEventListener('click', removeSuccessModal);
+  document.addEventListener('click', removeSuccessModalHandler);
 
   closeSuccess.addEventListener('click', () => {
     const successModal = document.querySelector('.success');
