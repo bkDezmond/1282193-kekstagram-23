@@ -16,19 +16,23 @@ const renderErrorTemplate = (error) => {
   errorFragment.append(errorFragmentTemplate);
 
   const closeError = errorFragment.querySelector('.error__button');
-  const errorHandler = () => {
-    const errorModal = document.querySelector('.error');
-    errorModal.remove();
+
+  document.body.append(errorFragment);
+
+  const removeErrorModal = (evt) => {
+    if (evt.target.className === 'error') {
+      document.removeEventListener('click', removeErrorModal);
+      const errorModal = document.querySelector('.error');
+      errorModal.remove();
+    }
   };
 
-  document.addEventListener('click', (evt) => {
-    if (evt.target.className === 'error') {
-      errorHandler();
-    }
-  });
+  document.addEventListener('click', removeErrorModal);
 
-  closeError.addEventListener('click', errorHandler);
-  document.body.append(errorFragment);
+  closeError.addEventListener('click', () => {
+    const errorModal = document.querySelector('.error');
+    errorModal.remove();
+  });
 };
 
 const renderSuccessTemplate = () => {
@@ -37,20 +41,23 @@ const renderSuccessTemplate = () => {
   successFragment.append(successFragmentTemplate);
 
   const closeSuccess = successFragment.querySelector('.success__button');
-  const successHandler = () => {
-    const successModal = document.querySelector('.success');
-    successModal.remove();
-  };
 
-  document.addEventListener('click', (evt) => {
-    if (evt.target.className === 'success') {
-      successHandler();
-    }
-  });
-
-  closeSuccess.addEventListener('click', successHandler);
   document.body.append(successFragment);
 
+  const removeSuccessModal = (evt) => {
+    if (evt.target.className === 'success') {
+      document.removeEventListener('click', removeSuccessModal);
+      const successModal = document.querySelector('.success');
+      successModal.remove();
+    }
+  };
+
+  document.addEventListener('click', removeSuccessModal);
+
+  closeSuccess.addEventListener('click', () => {
+    const successModal = document.querySelector('.success');
+    successModal.remove();
+  });
 };
 
 export { renderErrorTemplate, renderSuccessTemplate, isEscEvent, checkMaxLength };
